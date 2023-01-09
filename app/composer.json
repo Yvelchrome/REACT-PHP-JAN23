@@ -1,0 +1,17 @@
+{
+  "name": "loicjin/app",
+  "autoload": {
+    "psr-4": {
+      "App\\": "src/"
+    }
+  },
+  "authors": [
+    {
+      "name": "Snwolfy",
+      "email": "97434478+Snwolfy@users.noreply.github.com"
+    }
+  ],
+  "require": {
+    "psr/container": "^2.0"
+  }
+}
