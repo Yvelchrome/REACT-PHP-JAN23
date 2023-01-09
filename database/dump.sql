@@ -9,15 +9,13 @@ CREATE TABLE IF NOT EXISTS Users (
 CREATE TABLE IF NOT EXISTS Roommates (
     roommateId INT NOT NULL AUTO_INCREMENT,
     userId INT,
-    PRIMARY KEY (roommateId)
+    PRIMARY KEY (roommateId),
+    FOREIGN KEY (userId) REFERENCES Users(userId) ON DELETE CASCADE
 );
 
 CREATE TABLE IF NOT EXISTS Expenses (
     expenseId INT NOT NULL AUTO_INCREMENT,
     roommateId INT,
-    PRIMARY KEY (expenseId)
+    PRIMARY KEY (expenseId),
+    FOREIGN KEY (roommateId) REFERENCES Roommates(roommateId) ON DELETE CASCADE
 );
-
-ALTER TABLE Roommates ADD CONSTRAINT FOREIGN KEY (userId) REFERENCES Users(userId);
-
-ALTER TABLE Expenses ADD CONSTRAINT FOREIGN KEY (roommateId) REFERENCES Roommates(roommateId);
