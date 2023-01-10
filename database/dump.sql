@@ -15,6 +15,7 @@ CREATE TABLE IF NOT EXISTS Roommates (
 CREATE TABLE IF NOT EXISTS Expenses (
     expenseId INT NOT NULL AUTO_INCREMENT,
     roommateId INT,
+
     PRIMARY KEY (expenseId)
 );
 
