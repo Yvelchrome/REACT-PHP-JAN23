@@ -1,13 +1,12 @@
 import "./App.scss";
-import {} from "./pages";
+import { Login } from "./pages";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import Login from './pages/Login/Login';
 
 function App() {
   return (
       <Router>
         <Routes>
-          <Route path={"/"} element={}/>
+          <Route path={"/"} element={<Login/>}/>
           <Route path={"*"} element={}/>
         </Routes>
       </Router>
