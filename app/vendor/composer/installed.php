@@ -1,22 +1,22 @@
 <?php return array(
     'root' => array(
-        'pretty_version' => '1.0.0+no-version-set',
-        'version' => '1.0.0.0',
+        'pretty_version' => 'dev-main',
+        'version' => 'dev-main',
         'type' => 'library',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
-        'reference' => NULL,
-        'name' => 'loicjin/app',
+        'reference' => 'e878170fdffed67e9fc117ccf97dc1f1ac662bfb',
+        'name' => 'steven/app',
         'dev' => true,
     ),
     'versions' => array(
-        'loicjin/app' => array(
-            'pretty_version' => '1.0.0+no-version-set',
-            'version' => '1.0.0.0',
+        'firebase/php-jwt' => array(
+            'pretty_version' => 'v6.3.2',
+            'version' => '6.3.2.0',
             'type' => 'library',
-            'install_path' => __DIR__ . '/../../',
+            'install_path' => __DIR__ . '/../firebase/php-jwt',
             'aliases' => array(),
-            'reference' => NULL,
+            'reference' => 'ea7dda77098b96e666c5ef382452f94841e439cd',
             'dev_requirement' => false,
         ),
         'psr/container' => array(
@@ -26,6 +26,15 @@
             'install_path' => __DIR__ . '/../psr/container',
             'aliases' => array(),
             'reference' => 'c71ecc56dfe541dbd90c5360474fbc405f8d5963',
+            'dev_requirement' => false,
+        ),
+        'steven/app' => array(
+            'pretty_version' => 'dev-main',
+            'version' => 'dev-main',
+            'type' => 'library',
+            'install_path' => __DIR__ . '/../../',
+            'aliases' => array(),
+            'reference' => 'e878170fdffed67e9fc117ccf97dc1f1ac662bfb',
             'dev_requirement' => false,
         ),
     ),
