@@ -5,9 +5,9 @@ namespace App\Entity;
 class User extends BaseEntity
 {
     private int $userId;
-    private string $name;
-    private string $surname;
-    private string $email;
+    private string $userName;
+    private string $userSurname;
+    private string $userMail;
     private string $password;
     private int $admin;
 
@@ -32,54 +32,54 @@ class User extends BaseEntity
     /**
      * @return string
      */
-    public function getName(): string
+    public function getUserName(): string
     {
-        return $this->name;
+        return $this->userName;
     }
 
     /**
-     * @param string $name
+     * @param string $userName
      * @return User
      */
-    public function setName(string $name): User
+    public function setUserName(string $userName): User
     {
-        $this->name = $name;
+        $this->userName = $userName;
         return $this;
     }
 
     /**
      * @return string
      */
-    public function getSurname(): string
+    public function getUserSurname(): string
     {
-        return $this->surname;
+        return $this->userSurname;
     }
 
     /**
-     * @param string $surname
+     * @param string $userSurname
      * @return User
      */
-    public function setSurname(string $surname): User
+    public function setUserSurname(string $userSurname): User
     {
-        $this->surname = $surname;
+        $this->userSurname = $userSurname;
         return $this;
     }
 
     /**
      * @return string
      */
-    public function getEmail(): string
+    public function getUserMail(): string
     {
-        return $this->email;
+        return $this->userMail;
     }
 
     /**
-     * @param string $email
+     * @param string $userMail
      * @return User
      */
-    public function setEmail(string $email): User
+    public function setUserMail(string $userMail): User
     {
-        $this->email = $email;
+        $this->userMail = $userMail;
         return $this;
     }
 
@@ -118,7 +118,5 @@ class User extends BaseEntity
         $this->admin = $admin;
         return $this;
     }
-
-
 }
 
