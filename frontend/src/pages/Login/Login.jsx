@@ -2,12 +2,56 @@ import React, { useState } from "react";
 import style from "./Login.module.scss";
 export default function Login() {
   const [account, toggleAccount] = useState("login");
+// Valeurs initiales du formulaire de connexion
+const loginInitialValues = {
+  email: '', // Nom d'utilisateur
+  password: '' // Mot de passe
+};
 
+// Valeurs initiales du formulaire d'inscription
+const signupInitialValues = {
+  name: '', // Nom
+  surname: '', // Nom d'utilisateur
+  email: '', // Mot de passe
+  password: '' // Mot de passe
+};
   const toggleSignup = () => {
     // Si le formulaire d'inscription est affiché, afficher le formulaire de connexion
     // Sinon, afficher le formulaire d'inscription
     account === "signup" ? toggleAccount("login") : toggleAccount("signup");
   };
+ 
+  // Composant de connexion/inscription
+const Login = ({ isUserAuthenticated }) => {
+  // État du formulaire de connexion
+  const [login, setLogin] = useState(loginInitialValues);
+  // État du formulaire d'inscription
+  const [signup, setSignup] = useState(signupInitialValues);
+  // État du message d'erreur
+  const [error, showError] = useState('');
+ 
+  // Hook pour naviguer entre les pages
+  const navigate = useNavigate();
+  // Hook pour accéder aux données de l'utilisateur dans le contexte
+  const { setAccount } = useContext(DataContext);
+
+  
+  // Réinitialiser le message d'erreur lorsque les valeurs du formulaire de connexion sont mises à jour
+  useEffect(() => {
+      showError(false);
+  }, [login])
+
+  // Gestionnaire d'événement pour changer les valeurs du formulaire de connexion
+  const onValueChange = (e) => {
+      setLogin({ ...login, [e.target.name]: e.target.value });
+  }
+
+  // Gestionnaire d'événement pour changer les valeurs du formulaire d'inscription
+const onInputChange = (e) => {
+  // Mise à jour de l'état du formulaire d'inscription avec la valeur saisie par l'utilisateur
+  setSignup({ ...signup, [e.target.name]: e.target.value });
+}
+}
   return (
     <div className={style.container}>
       {account === "login" ? (
@@ -17,10 +61,11 @@ export default function Login() {
           <div className={style.inputContainer}>
             {/* // Champ de saisie pour le nom d'utilisateur */}
             <input
-              type="text"
-              name="username"
-              id="username"
-              placeholder="Username"
+              type="email"
+              name="email"
+              id="email"
+              placeholder="email"
+              value={login.email} onChange={(e) => onValueChange(e)}
             />
             {/* // Champ de saisie pour le mot de passe */}
             <input
@@ -28,6 +73,7 @@ export default function Login() {
               name="password"
               id="password"
               placeholder="Mot de passe"
+              value={login.password} onChange={(e) => onValueChange(e)}
             />
             {/* // Bouton de soumission du formulaire */}
             <button type="submit">Connexion</button>
@@ -48,13 +94,24 @@ export default function Login() {
           <h1 className={style.title}>Créer un compte</h1>
           <div className={style.inputContainer}>
             {/* // Champ de saisie pour le nom */}
-            <input type="text" name="name" id="name" placeholder="Nom" />
+            <input 
+              type="text" 
+              name="name" 
+              id="name" 
+              placeholder="Nom" 
+            />
+            <input 
+              type="text" 
+              name="surname" 
+              id="surname" 
+              placeholder="surname" 
+            />
             {/* // Champ de saisie pour le nom d'utilisateur */}
             <input
-              type="text"
-              name="username"
-              id="username"
-              placeholder="Username"
+              type="email"
+              name="email"
+              id="email"
+              placeholder="email"
             />
             {/* // Champ de saisie pour le mot de passe */}
             <input
