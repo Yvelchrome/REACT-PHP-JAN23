@@ -12,6 +12,9 @@
     }
   ],
   "require": {
-    "psr/container": "^2.0"
+    "firebase/php-jwt": "^6.3",
+    "psr/container": "^2.0",
+    "ext-pdo": "*",
+    "ext-openssl": "*"
   }
 }
