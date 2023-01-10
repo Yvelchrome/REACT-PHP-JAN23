@@ -15,12 +15,7 @@ const signupInitialValues = {
   email: '', // Mot de passe
   password: '' // Mot de passe
 };
-  const toggleSignup = () => {
-    // Si le formulaire d'inscription est affiché, afficher le formulaire de connexion
-    // Sinon, afficher le formulaire d'inscription
-    account === "signup" ? toggleAccount("login") : toggleAccount("signup");
-  };
- 
+  
   // Composant de connexion/inscription
 
   // État du formulaire de connexion
@@ -75,10 +70,12 @@ const onInputChange = (e) => {
             <div className={style.create}>
               <p className={style.text}>OU</p>
               {/* // Bouton de basculement vers la vue d'inscription */}
-              <button onClick={() => toggleSignup()} className={style.change}>
+              <button onClick={toggleAccount('')} className={style.change}>
                 Inscription
               </button>
             </div>
+            {login.password}
+            {login.email}
           </div>
         </div>
       ) : (
@@ -123,7 +120,7 @@ const onInputChange = (e) => {
             <div className={style.create}>
               <p className={style.text}>OU</p>
               {/* // Bouton de basculement vers la vue de connexion */}
-              <button onClick={() => toggleSignup()} className={style.change}>
+              <button onClick={toggleAccount('login')} className={style.change}>
                 Connexion
               </button>
 

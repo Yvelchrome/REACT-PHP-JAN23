@@ -22,4 +22,11 @@ class SecurityController extends BaseController
             "token" => $jwt
         ]);
     }
+
+    public function register()
+    {
+        $apiInput = json_decode(file_get_contents('php://input'), true);
+
+        $username = $apiInput['username']
+    }
 }
