@@ -22,36 +22,29 @@ const signupInitialValues = {
   };
  
   // Composant de connexion/inscription
-const Login = ({ isUserAuthenticated }) => {
+
   // État du formulaire de connexion
   const [login, setLogin] = useState(loginInitialValues);
   // État du formulaire d'inscription
   const [signup, setSignup] = useState(signupInitialValues);
   // État du message d'erreur
   const [error, showError] = useState('');
+
  
-  // Hook pour naviguer entre les pages
-  const navigate = useNavigate();
-  // Hook pour accéder aux données de l'utilisateur dans le contexte
-  const { setAccount } = useContext(DataContext);
-
-  
-  // Réinitialiser le message d'erreur lorsque les valeurs du formulaire de connexion sont mises à jour
-  useEffect(() => {
-      showError(false);
-  }, [login])
-
   // Gestionnaire d'événement pour changer les valeurs du formulaire de connexion
   const onValueChange = (e) => {
-      setLogin({ ...login, [e.target.name]: e.target.value });
+
+  console.log(e.target.value)
+      setSignup({ ...signup, [e.target.name]: e.target.value });
   }
+
 
   // Gestionnaire d'événement pour changer les valeurs du formulaire d'inscription
 const onInputChange = (e) => {
   // Mise à jour de l'état du formulaire d'inscription avec la valeur saisie par l'utilisateur
-  setSignup({ ...signup, [e.target.name]: e.target.value });
+  setSignup({...signup, [e.target.name]: e.target.value });
 }
-}
+
   return (
     <div className={style.container}>
       {account === "login" ? (
@@ -99,12 +92,14 @@ const onInputChange = (e) => {
               name="name" 
               id="name" 
               placeholder="Nom" 
+              onChange={(e) => onInputChange(e)}
             />
             <input 
               type="text" 
               name="surname" 
               id="surname" 
               placeholder="surname" 
+              onChange={(e) => onInputChange(e)}
             />
             {/* // Champ de saisie pour le nom d'utilisateur */}
             <input
@@ -112,6 +107,7 @@ const onInputChange = (e) => {
               name="email"
               id="email"
               placeholder="email"
+              onChange={(e) => onInputChange(e)}
             />
             {/* // Champ de saisie pour le mot de passe */}
             <input
@@ -119,6 +115,7 @@ const onInputChange = (e) => {
               name="password"
               id="password"
               placeholder="Mot de passe"
+              onChange={(e) => onInputChange(e)}
             />
             {/* // Bouton de soumission du formulaire d'inscription */}
             <button type="submit">Inscription</button>
@@ -129,10 +126,17 @@ const onInputChange = (e) => {
               <button onClick={() => toggleSignup()} className={style.change}>
                 Connexion
               </button>
+
             </div>
+            {signup.name}
+            {signup.password}
+            {signup.email}
+            {signup.surname}
           </div>
         </div>
       )}
     </div>
   );
-}
+      }
+    
+
