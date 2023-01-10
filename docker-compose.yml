@@ -21,9 +21,11 @@ services:
     volumes:
       - ./app:/var/www/html
 
-  database:
+  db:
     image: mariadb
     restart: always
+    ports:
+      - "3306:3306"
     volumes:
       - ./database/dump.sql:/docker-entrypoint-initdb.d/dump.sql
     environment:
@@ -34,6 +36,10 @@ services:
     image: phpmyadmin
     restart: always
     ports:
-      - 8080:80
+      - "8080:80"
     environment:
       - PMA_ARBITRARY=1
+    links:
+      - db
+    depends_on:
+      - db

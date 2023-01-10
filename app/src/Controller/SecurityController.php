@@ -15,7 +15,7 @@ class SecurityController extends BaseController
         $name = $_SERVER['PHP_AUTH_USER'];
         $plainPassword = $_SERVER['PHP_AUTH_PW'];
 
-        $user = (new User())->setname($name);
+        $user = (new User())->setUserName($name);
         $jwt = JWTHelper::buildJWT($user);
 
         $this->renderJSON([
