@@ -1,8 +1,8 @@
 CREATE TABLE IF NOT EXISTS User (
     userId INT NOT NULL AUTO_INCREMENT,
-    userName VARCHAR(255) NOT NULL,
-    userSurname VARCHAR(255) NOT NULL,
-    userMail VARCHAR(255) NOT NULL,
+    userName VARCHAR(256) NOT NULL,
+    userSurname VARCHAR(256) NOT NULL,
+    userMail VARCHAR(256) NOT NULL,
     password VARCHAR(256) NOT NULL,
     admin INT(1) NOT NULL DEFAULT 0,
     PRIMARY KEY (userId)
@@ -18,7 +18,7 @@ CREATE TABLE IF NOT EXISTS Roommates (
 CREATE TABLE IF NOT EXISTS Expenses (
     expenseId INT NOT NULL AUTO_INCREMENT,
     roommateId INT,
-    expenseName VARCHAR(255),
+    expenseName VARCHAR(256),
     expenseSum INT(10),
     alreadyPayed INT(10),
     PRIMARY KEY (expenseId),
