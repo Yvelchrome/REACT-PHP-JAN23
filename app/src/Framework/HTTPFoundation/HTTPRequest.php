@@ -8,7 +8,7 @@ class HTTPRequest
      * @param string $key
      * @return mixed|null
      */
-    public function cookieData(string $key)
+    public function cookieData(string $key): mixed
     {
         return $_COOKIE[$key] ?? null;
     }
@@ -42,7 +42,7 @@ class HTTPRequest
      * @param string|null $key
      * @return array|mixed
      */
-    public function getQuery(string $key = null)
+    public function getQuery(string $key = null): mixed
     {
         parse_str($_SERVER['QUERY_STRING'], $queryString);
         $query = $queryString[$key] ?? null;
@@ -53,7 +53,7 @@ class HTTPRequest
      * @param string|null $key
      * @return array|mixed
      */
-    public function getRequest(string $key = null)
+    public function getRequest(string $key = null): mixed
     {
         return $key ? $_POST[$key] : $_POST;
     }

@@ -4,6 +4,8 @@ namespace App\Framework\Entity;
 
 use App\Framework\HTTPFoundation\HTTPRequest;
 use App\Framework\HTTPFoundation\HTTPResponse;
+use JetBrains\PhpStorm\NoReturn;
+use RuntimeException;
 
 abstract class BaseController
 {
@@ -16,13 +18,13 @@ abstract class BaseController
         $this->HTTPResponse = new HTTPResponse();
 
         if (!is_callable([$this, $action])) {
-            throw new \RuntimeException("La méthode $action n'est pas disponible");
+            throw new RuntimeException("La méthode $action n'est pas disponible");
         }
 
         call_user_func_array([$this, $action], $params);
     }
 
-    public function render(string $view, array $variables, string $pageTitle)
+    #[NoReturn] public function render(string $view, array $variables, string $pageTitle): void
     {
         $template = './../View/template.php';
         $view = './../View/' . $view . '.php';
@@ -40,7 +42,7 @@ abstract class BaseController
         exit;
     }
 
-    public function renderJSON($content)
+    #[NoReturn] public function renderJSON($content): void
     {
         header('Content-Type: application/json');
         echo json_encode($content, JSON_PRETTY_PRINT);

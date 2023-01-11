@@ -2,6 +2,9 @@
 
 namespace App\Framework\HTTPFoundation;
 
+use DateTime;
+use JetBrains\PhpStorm\NoReturn;
+
 class HTTPResponse
 {
     public function addHeader($header): void
@@ -9,13 +12,13 @@ class HTTPResponse
         header($header);
     }
 
-    public function redirect($location, int $code = 0, bool $replace = true): void
+    #[NoReturn] public function redirect($location, int $code = 0, bool $replace = true): void
     {
         header('Location: ' . $location, $replace, $code);
         exit;
     }
 
-    public function unauthorized(array $messages): void
+    #[NoReturn] public function unauthorized(array $messages): void
     {
         $this->addHeader('WWW-Authenticate: Basic realm="This area needs authentication"');
         $this->addHeader('HTTP/1.0 401 Unauthorized');
@@ -23,7 +26,7 @@ class HTTPResponse
     }
 
     // Changement par rapport à la fonction setcookie() : le dernier argument est par défaut à true
-    public function setCookie($name, $value = '', $expire = 0, $path = null, $domain = null, $secure = false, $httpOnly = true)
+    public function setCookie($name, $value = '', $expire = 0, $path = null, $domain = null, $secure = false, $httpOnly = true): void
     {
         setcookie($name, $value, $expire, $path, $domain, $secure, $httpOnly);
     }
@@ -31,7 +34,7 @@ class HTTPResponse
     public function setCacheHeader(int $seconds = 0): void
     {
         $timestamp = time() + $seconds;
-        $date = new \DateTime();
+        $date = new DateTime();
         $date->setTimestamp($timestamp);
 
         $this->addHeader('Cache-Control: public, max-age=' . $seconds);

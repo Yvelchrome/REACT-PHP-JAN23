@@ -10,11 +10,11 @@
 
 ### Getting started
 
-0. Clone the repository
-1. Navigate to the "frontend" directory by running `cd frontend`
-   - Install the dependencies, run `npm install`.
-2. run `docker compose up` to setup and start everything
+1. Clone the repository
+2. Navigate to the "frontend" directory by running `cd frontend`
+   - 2.1 Install the dependencies, run `npm install`.
+3. run `docker compose up` to set up and start everything
    - If you're on a Windows OS, because Docker is really slow, go to the "frontend" directory and run `npm run start` to see the website on `localhost:3000`
-3. go to `localhost:3000` to see the website
-4. go to `localhost:8080` to access phpmyadmin
+4. go to `localhost:3000` to see the website
+5. go to `localhost:8080` to access phpmyadmin
     - username: `root` | password: `password`

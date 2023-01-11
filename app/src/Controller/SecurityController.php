@@ -6,10 +6,11 @@ use App\Entity\User;
 use App\Framework\Entity\BaseController;
 use App\Framework\Route\Route;
 use App\Service\JWTHelper;
+use JetBrains\PhpStorm\NoReturn;
 
 class SecurityController extends BaseController
 {
-    #[Route("/login", name: "app_login", methods: ["POST"])]
+    /*#[NoReturn] #[Route("/login", name: "app_login", methods: ["POST"])]
     public function login()
     {
         $name = $_SERVER['PHP_AUTH_USER'];
@@ -21,12 +22,12 @@ class SecurityController extends BaseController
         $this->renderJSON([
             "token" => $jwt
         ]);
-    }
+    }*/
 
     public function register()
     {
         $apiInput = json_decode(file_get_contents('php://input'), true);
 
-        $username = $apiInput['username']
+        $username = $apiInput['username'];
     }
 }

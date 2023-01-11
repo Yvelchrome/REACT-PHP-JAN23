@@ -7,6 +7,7 @@ use App\Framework\Entity\Dependency;
 use App\Framework\Traits\DirectoryParser;
 use InvalidArgumentException;
 use ReflectionClass;
+use ReflectionException;
 
 class Router
 {
@@ -18,7 +19,7 @@ class Router
     use DirectoryParser;
 
     /**
-     * @throws \ReflectionException
+     * @throws ReflectionException
      */
     public function getRoutesFromAttributes(string $controllerDirectory): self
     {
@@ -47,7 +48,7 @@ class Router
     }
 
     /**
-     * @throws \ReflectionException
+     * @throws ReflectionException
      */
     public function run()
     {

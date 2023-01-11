@@ -3,7 +3,11 @@
 namespace App\Framework\DIC;
 
 use App\Framework\Traits\DirectoryParser;
+use InvalidArgumentException;
+use Psr\Container\ContainerExceptionInterface;
 use Psr\Container\ContainerInterface;
+use Psr\Container\NotFoundExceptionInterface;
+use ReflectionClass;
 use ReflectionException;
 
 class DIC implements ContainerInterface
@@ -39,7 +43,7 @@ class DIC implements ContainerInterface
     public function injectParameters(string $yamlFile): self
     {
         if (!file_exists($yamlFile)) {
-            throw new \InvalidArgumentException('Ficher non trouvé');
+            throw new InvalidArgumentException('Ficher non trouvé');
         }
 
         foreach (yaml_parse_file($yamlFile)['parameters'] as $name => $parameter) {
@@ -53,11 +57,13 @@ class DIC implements ContainerInterface
 
     /**
      * @throws ReflectionException
+     * @throws ContainerExceptionInterface
+     * @throws NotFoundExceptionInterface
      */
-    public function run(string $srcDir, string $framworkDir = '')
+    public function run(string $srcDir, string $frameworkDir = '')
     {
         // This gets all the interfaces from the framework directory
-//        foreach ($this->getClassesFromDirectory($framworkDir) as $class) {
+//        foreach ($this->getClassesFromDirectory($frameworkDir) as $class) {
 //            if ($interfaces = ($reflection = new \ReflectionClass($class))->getInterfaces()) {
 //                foreach ($interfaces as $interface) {
 //                    $this->set($interface->getName(), function () use ($reflection) {
@@ -73,7 +79,7 @@ class DIC implements ContainerInterface
 
         // This gets all the interfaces from the 'user' directory
         foreach ($this->getClassesFromDirectory($srcDir) as $class) {
-            if ($interfaces = ($reflection = new \ReflectionClass($class))->getInterfaces()) {
+            if ($interfaces = ($reflection = new ReflectionClass($class))->getInterfaces()) {
                 foreach ($interfaces as $interface) {
                     $this->set($interface->getName(), function () use ($reflection) {
                         try {
@@ -100,17 +106,23 @@ class DIC implements ContainerInterface
                 continue;
             }
             $constructorDependencies = [];
-            if (($reflection = new \ReflectionClass($class))->getConstructor()) {
+            if (($reflection = new ReflectionClass($class))->getConstructor()) {
                 foreach ($reflection->getConstructor()->getParameters() as $parameter) {
                     // If it's a builtin parameter, it should have been manually injected
                     // to be able to have a unique identifier in the container, the name of a
                     // manually injected parameter is <varType><$varName>
                     if (!$parameter->getType()->isBuiltin()) {
-                        $constructorDependencies[] = $this->get($parameter->getType()->getName());
+                        try {
+                            $constructorDependencies[] = $this->get($parameter->getType()->getName());
+                        } catch (NotFoundExceptionInterface|ContainerExceptionInterface $e) {
+                        }
                     } else {
                         // TODO - c'est un fix pas dingue pour l'instant...
                         if (!$parameter->getName() == "action" && !$parameter->getName() == "params") {
-                            $constructorDependencies[] = $this->get($parameter->getType()->getName() . ' $' . $parameter->getName());
+                            try {
+                                $constructorDependencies[] = $this->get($parameter->getType()->getName() . ' $' . $parameter->getName());
+                            } catch (NotFoundExceptionInterface|ContainerExceptionInterface $e) {
+                            }
                         }
 
                     }
