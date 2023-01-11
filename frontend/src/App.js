@@ -1,23 +1,14 @@
 import "./App.scss";
-import { Login } from "./pages";
+import { Login, Register } from "./pages";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import { useEffect } from "react";
-
-/*useEffect(() => {
-  fetch("http://backend/register", {
-    method: "POST",
-    body: JSON.stringify({
-      username: 'Fred',
-      password: 'passwordw'
-    }),
-  })
-}).then(data => data.JSON()).then(data => console.log(data))*/
 
 function App() {
   return (
     <Router>
       <Routes>
         <Route path={"/"} element={<Login />} />
+        <Route path={"/login"} element={<Login />} />
+        <Route path={"/register"} element={<Register />} />
         <Route path={"*"} element={<Login />} />
       </Routes>
     </Router>

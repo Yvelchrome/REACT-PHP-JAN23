@@ -63,19 +63,19 @@ class DIC implements ContainerInterface
     public function run(string $srcDir, string $frameworkDir = '')
     {
         // This gets all the interfaces from the framework directory
-//        foreach ($this->getClassesFromDirectory($frameworkDir) as $class) {
-//            if ($interfaces = ($reflection = new \ReflectionClass($class))->getInterfaces()) {
-//                foreach ($interfaces as $interface) {
-//                    $this->set($interface->getName(), function () use ($reflection) {
-//                        try {
-//                            return $reflection->newInstance();
-//                        } catch (ReflectionException $e) {
-//                            return call_user_func([$reflection->getName(), 'getInstance']);
-//                        }
-//                    });
-//                }
-//            }
-//        }
+        /*foreach ($this->getClassesFromDirectory($frameworkDir) as $class) {
+            if ($interfaces = ($reflection = new ReflectionClass($class))->getInterfaces()) {
+                foreach ($interfaces as $interface) {
+                    $this->set($interface->getName(), function () use ($reflection) {
+                        try {
+                            return $reflection->newInstance();
+                        } catch (ReflectionException $e) {
+                            return call_user_func([$reflection->getName(), 'getInstance']);
+                        }
+                    });
+                }
+            }
+        }*/
 
         // This gets all the interfaces from the 'user' directory
         foreach ($this->getClassesFromDirectory($srcDir) as $class) {

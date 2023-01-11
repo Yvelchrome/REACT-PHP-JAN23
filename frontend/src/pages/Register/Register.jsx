@@ -1,8 +1,11 @@
-import { useState } from "react";
-import style from "./Login.module.scss";
+import style from "../Register/Register.module.scss";
 import { Link } from "react-router-dom";
-export default function Login() {
+import { useState } from "react";
+
+export default function Register() {
   const [formData, setFormData] = useState({
+    name: "",
+    surname: "",
     mail: "",
     password: "",
   });
@@ -18,9 +21,11 @@ export default function Login() {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    fetch("http://localhost:5656/login", {
+    fetch("http://localhost:5656/register", {
       method: "POST",
       body: JSON.stringify({
+        name: formData.name,
+        surname: formData.surname,
         mail: formData.mail,
         password: formData.password,
       }),
@@ -32,8 +37,22 @@ export default function Login() {
   return (
     <div className={style.container}>
       <form className={style.form} onSubmit={handleSubmit}>
-        <h1 className={style.title}>Avez-vous un compte ?</h1>
+        <h1 className={style.title}>Créer un compte</h1>
         <div className={style.inputContainer}>
+          <input
+            type="text"
+            name="name"
+            placeholder="Nom"
+            value={formData.name}
+            onChange={handleChange}
+          />
+          <input
+            type="text"
+            name="surname"
+            placeholder="surname"
+            value={formData.surname}
+            onChange={handleChange}
+          />
           <input
             type="email"
             name="mail"
@@ -48,11 +67,11 @@ export default function Login() {
             value={formData.password}
             onChange={handleChange}
           />
-          <button>Connexion</button>
+          <button>Inscription</button>
           <div className={style.create}>
             <p className={style.text}>OU</p>
-            <Link to={"/register"} className={style.change}>
-              Inscription
+            <Link to={"/login"} className={style.change}>
+              Connexion
             </Link>
           </div>
         </div>
