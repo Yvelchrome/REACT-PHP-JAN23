@@ -20,8 +20,11 @@ export default function Login() {
 
   return (
     <div className={style.container}>
+      <div className={style.container_image}>
+        
+      </div>
       {account === "login" ? (
-        <form className={style.form}>
+        <form className={style.form_container}>
           <h1 className={style.title}>Avez-vous un compte ?</h1>
           <div className={style.inputContainer}>
             <input
@@ -53,7 +56,7 @@ export default function Login() {
           </div>
         </form>
       ) : (
-        <form className={style.form}>
+        <form className={style.form_container}>
           <h1 className={style.title}>Créer un compte</h1>
           <div className={style.inputContainer}>
             <input
