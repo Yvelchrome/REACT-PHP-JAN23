@@ -46,6 +46,7 @@ export default function Register() {
             type="text"
             name="name"
             placeholder="Nom"
+            required
             value={formData.name}
             onChange={handleChange}
           />
@@ -53,6 +54,7 @@ export default function Register() {
             type="text"
             name="surname"
             placeholder="surname"
+            required
             value={formData.surname}
             onChange={handleChange}
           />
@@ -60,6 +62,7 @@ export default function Register() {
             type="email"
             name="mail"
             placeholder="email"
+            required
             value={formData.mail}
             onChange={handleChange}
           />
@@ -67,6 +70,7 @@ export default function Register() {
             type="password"
             name="password"
             placeholder="Mot de passe"
+            required
             value={formData.password}
             onChange={handleChange}
           />

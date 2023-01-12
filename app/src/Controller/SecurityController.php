@@ -31,10 +31,10 @@ class SecurityController extends BaseController
 
         $name = $apiInput['name'];
         $surname = $apiInput['surname'];
-        $email = $apiInput['mail'];
-        $plainPassword = $apiInput['password'];
+        $mail = $apiInput['mail'];
+        $password = $apiInput['password'];
 
-        $user = (new User())->setUserName($name)->setUserSurname($surname)->setUserMail($email)->setPassword($plainPassword);
+        $user = (new User())->setUserName($name)->setUserSurname($surname)->setUserMail($mail)->setPassword($password);
 
         $manager = new UserManager(new PDOFactory());
         $manager->addUser($user);
@@ -45,16 +45,12 @@ class SecurityController extends BaseController
     {
         $apiInput = json_decode(file_get_contents('php://input'), true);
 
-        $email = $apiInput['mail'];
-        $plainPassword = $apiInput['password'];
-        $user = (new User())->setUserMail($email)->setPassword($plainPassword);
+        $mail = $apiInput['mail'];
+        $password = $apiInput['password'];
+
+        $user = (new User())->setUserMail($mail)->setPassword($password);
 
         $manager = new UserManager(new PDOFactory());
         $check = $manager->checkUser($user);
-
-        if (!$check) {
-            $this->render("login.php", ['error' => 'Le mail ou le mot de passe est incorrect'], "invalid mail or pw");
-        }
-        header('Location: /');
     }
 }

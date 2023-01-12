@@ -31,6 +31,7 @@ export default function Login() {
       .then((data) => console.log(data))
       .catch((error) => console.error("Error:", error));
 
+    // TODO: navigate to the home page on successful query + register
     navigate("/");
   };
 
@@ -44,6 +45,7 @@ export default function Login() {
             type="email"
             name="mail"
             placeholder="email"
+            required
             value={formData.mail}
             onChange={handleChange}
           />
@@ -51,6 +53,7 @@ export default function Login() {
             type="password"
             name="password"
             placeholder="Mot de passe"
+            required
             value={formData.password}
             onChange={handleChange}
           />
