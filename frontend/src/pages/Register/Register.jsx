@@ -1,8 +1,10 @@
 import style from "./Register.module.scss";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
 
 export default function Register() {
+  const navigate = useNavigate();
+
   const [formData, setFormData] = useState({
     name: "",
     surname: "",
@@ -30,6 +32,8 @@ export default function Register() {
       .then((data) => data.json())
       .then((data) => console.log(data))
       .catch((error) => console.error("Error:", error));
+
+    navigate("/login");
   };
 
   return (

@@ -1,8 +1,10 @@
 import style from "./Login.module.scss";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
 
 export default function Login() {
+  const navigate = useNavigate();
+
   const [formData, setFormData] = useState({
     mail: "",
     password: "",
@@ -28,6 +30,8 @@ export default function Login() {
       .then((data) => data.json())
       .then((data) => console.log(data))
       .catch((error) => console.error("Error:", error));
+
+    navigate("/");
   };
 
   return (
