@@ -1,4 +1,4 @@
-import style from "../Register/Register.module.scss";
+import style from "./Register.module.scss";
 import { Link } from "react-router-dom";
 import { useState } from "react";
 
@@ -21,17 +21,21 @@ export default function Register() {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    fetch("http://localhost:5656/register", {
-      method: "POST",
-      body: JSON.stringify(formData),
-    })
+    const options = {
+      method: "POST", // configuration de la méthode de requête en POST
+      headers: { "Content-Type": "application/json" }, // configuration du type de contenu dans les en-têtes de la requête en JSON
+      body: JSON.stringify(formData), // conversion de l'objet data en chaine pour l'inclure dans le corps de la requête
+    };
+    fetch("http://localhost:5656/login", options)
       .then((data) => data.json())
-      .then((data) => console.log(data));
+      .then((data) => console.log(data))
+      .catch((error) => console.error("Error:", error));
   };
 
   return (
     <div className={style.container}>
-      <form className={style.form} onSubmit={handleSubmit}>
+      <div className={style.container_image}></div>
+      <form className={style.form_container} onSubmit={handleSubmit}>
         <h1 className={style.title}>Créer un compte</h1>
         <div className={style.inputContainer}>
           <input
