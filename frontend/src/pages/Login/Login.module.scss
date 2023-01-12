@@ -1,0 +1,81 @@
+.container{
+    display: flex;
+    
+    height: 100vh;
+    
+            
+    .container_image{
+        height: 100vh;
+        width: 50%;
+        
+        background:  no-repeat url("../../assets/background_connexion.jpg");
+        background-size: cover;
+        
+    }
+    .form_container{
+        height: 100vh;
+        width: 50%;
+        
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        .inputContainer{
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            height: 100%;
+            input{
+                width: 50%;
+                height: 40px;
+                padding-left: 10px;
+                border-radius: 25px;
+                border: none;
+                background-color: rgba(255,255,255,0.07);
+                margin-bottom: 25px;
+                border: solid black 1px;
+                &::placeholder{
+                    color: black;
+                }
+                
+                
+            }
+            .create{
+                display: flex;
+                align-items: center;
+                flex-direction: column;
+                width: 100%;
+                .text{
+                   color: white;
+                   text-decoration: none; 
+                }
+                .change{
+                    color: black;
+                    text-decoration: none;
+                    display: block;
+                    height: 40px;
+                    background-color: black;
+                    border-radius: 25px;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    color: white;
+                }
+            }
+            
+            button{
+                width: 50%;
+                height: 40px;
+                margin: 10px;
+                border: none;
+                border-radius: 25px;
+                background-color: #ddb6b0;
+                color: white;
+            }
+        }
+    
+        
+    }
+}
