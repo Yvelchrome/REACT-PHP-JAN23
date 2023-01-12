@@ -9,6 +9,25 @@ export default function Login() {
     email: "",
     password: "",
   });
+  const handleClick = (event) =>{
+    event.preventDefault();
+     // On convertit les données de l'état en chaîne JSON
+    
+     
+     const options = {
+       method: 'POST', // configuration de la méthode de requête en POST
+       headers: { 'Content-Type': 'application/json' }, // configuration du type de contenu dans les en-têtes de la requête en JSON
+       body: JSON.stringify(formData) // conversion de l'objet data en chaine pour l'inclure dans le corps de la requête
+     };
+     fetch('http://backend/register', options)
+       .then(response => response.json()) // analyse de la réponse JSON
+       .then(data => console.log(data)) // affiche les données obtenues
+       .catch(error => console.error('Error:', error)); // gère les erreurs éventuelles lors de la requête
+     
+   
+    toggleAccount('login');
+    
+  }
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -18,6 +37,10 @@ export default function Login() {
     }));
   };
 
+  const toggleSignup = () => {
+    console.log("toggle");
+  };
+  
   return (
     <div className={style.container}>
       <div className={style.container_image}>
@@ -43,7 +66,7 @@ export default function Login() {
               value={formData.password}
               onChange={handleChange}
             />
-            <button type="submit">Connexion</button>
+            <button type="submit" onClick={(event) => handleClick(event) }>Connexion</button>
             <div className={style.create}>
               <p className={style.text}>OU</p>
               <button
@@ -91,11 +114,16 @@ export default function Login() {
               placeholder="Mot de passe"
               onChange={handleChange}
             />
-            <button type="submit">Inscription</button>
+            <button type="submit" 
+             onClick={(event) => handleClick(event) }
+            >
+              Inscription
+            </button>
             <div className={style.create}>
               <p className={style.text}>OU</p>
               <button
-                onClick={() => toggleAccount("login")}
+                onClick={() => toggleSignup() }
+                
                 className={style.change}
               >
                 Connexion
