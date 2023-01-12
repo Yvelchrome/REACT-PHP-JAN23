@@ -4,7 +4,6 @@ namespace App\Framework\Entity;
 
 use App\Framework\HTTPFoundation\HTTPRequest;
 use App\Framework\HTTPFoundation\HTTPResponse;
-use JetBrains\PhpStorm\NoReturn;
 use RuntimeException;
 
 abstract class BaseController
@@ -24,7 +23,7 @@ abstract class BaseController
         call_user_func_array([$this, $action], $params);
     }
 
-    #[NoReturn] public function render(string $view, array $variables, string $pageTitle): void
+    public function render(string $view, array $variables, string $pageTitle): void
     {
         $template = './../View/template.php';
         $view = './../View/' . $view . '.php';
@@ -42,7 +41,7 @@ abstract class BaseController
         exit;
     }
 
-    #[NoReturn] public function renderJSON($content): void
+    public function renderJSON($content): void
     {
         header('Content-Type: application/json');
         echo json_encode($content, JSON_PRETTY_PRINT);

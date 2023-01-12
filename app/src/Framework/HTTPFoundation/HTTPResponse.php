@@ -3,7 +3,6 @@
 namespace App\Framework\HTTPFoundation;
 
 use DateTime;
-use JetBrains\PhpStorm\NoReturn;
 
 class HTTPResponse
 {
@@ -12,13 +11,13 @@ class HTTPResponse
         header($header);
     }
 
-    #[NoReturn] public function redirect($location, int $code = 0, bool $replace = true): void
+    public function redirect($location, int $code = 0, bool $replace = true): void
     {
         header('Location: ' . $location, $replace, $code);
         exit;
     }
 
-    #[NoReturn] public function unauthorized(array $messages): void
+    public function unauthorized(array $messages): void
     {
         $this->addHeader('WWW-Authenticate: Basic realm="This area needs authentication"');
         $this->addHeader('HTTP/1.0 401 Unauthorized');

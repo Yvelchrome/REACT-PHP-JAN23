@@ -7,11 +7,10 @@ use App\Framework\Entity\BaseController;
 use App\Framework\Factory\PDOFactory;
 use App\Framework\Route\Route;
 use App\Manager\UserManager;
-use JetBrains\PhpStorm\NoReturn;
 
 class SecurityController extends BaseController
 {
-    /*#[NoReturn] #[Route("/login", name: "app_login", methods: ["POST"])]
+    /*#[Route("/login", name: "app_login", methods: ["POST"])]
     public function login()
     {
         $name = $_SERVER['PHP_AUTH_USER'];
@@ -25,7 +24,7 @@ class SecurityController extends BaseController
         ]);
     }*/
 
-    #[NoReturn] #[Route("/register", name: "app_register", methods: ["POST"])]
+    #[Route("/register", name: "app_register", methods: ["POST"])]
     public function register()
     {
         $apiInput = json_decode(file_get_contents('php://input'), true);
@@ -41,7 +40,7 @@ class SecurityController extends BaseController
         $manager->addUser($user);
     }
 
-    #[NoReturn] #[Route("/login", name: "app_login", methods: ["POST"])]
+    #[Route("/login", name: "app_login", methods: ["POST"])]
     public function login()
     {
         $apiInput = json_decode(file_get_contents('php://input'), true);
