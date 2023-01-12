@@ -28,7 +28,7 @@ export default function Register() {
       headers: { "Content-Type": "application/json" }, // configuration du type de contenu dans les en-têtes de la requête en JSON
       body: JSON.stringify(formData), // conversion de l'objet data en chaine pour l'inclure dans le corps de la requête
     };
-    fetch("http://localhost:5656/login", options)
+    fetch("http://localhost:5656/register", options)
       .then((data) => data.json())
       .then((data) => console.log(data))
       .catch((error) => console.error("Error:", error));
