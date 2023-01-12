@@ -23,12 +23,7 @@ export default function Register() {
 
     fetch("http://localhost:5656/register", {
       method: "POST",
-      body: JSON.stringify({
-        name: formData.name,
-        surname: formData.surname,
-        mail: formData.mail,
-        password: formData.password,
-      }),
+      body: JSON.stringify(formData),
     })
       .then((data) => data.json())
       .then((data) => console.log(data));

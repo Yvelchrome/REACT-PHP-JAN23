@@ -3,11 +3,10 @@
 namespace App\Controller;
 
 use App\Entity\User;
-use App\Factory\PDOFactory;
 use App\Framework\Entity\BaseController;
+use App\Framework\Factory\PDOFactory;
 use App\Framework\Route\Route;
 use App\Manager\UserManager;
-use App\Service\JWTHelper;
 use JetBrains\PhpStorm\NoReturn;
 
 class SecurityController extends BaseController
@@ -33,7 +32,7 @@ class SecurityController extends BaseController
 
         $name = $apiInput['name'];
         $surname = $apiInput['surname'];
-        $email = $apiInput['email'];
+        $email = $apiInput['mail'];
         $plainPassword = $apiInput['password'];
 
         $user = (new User())->setUserName($name)->setUserSurname($surname)->setUserMail($email)->setPassword($plainPassword);

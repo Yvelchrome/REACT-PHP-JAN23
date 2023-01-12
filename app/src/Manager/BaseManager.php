@@ -2,7 +2,7 @@
 
 namespace App\Manager;
 
-use App\Interfaces\Database;
+use App\Framework\Interfaces\Database;
 use PDO;
 
 abstract class BaseManager

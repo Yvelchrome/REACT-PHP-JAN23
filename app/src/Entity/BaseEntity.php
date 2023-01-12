@@ -2,7 +2,7 @@
 
 namespace App\Entity;
 
-use App\Traits\Hydrator;
+use App\Framework\Traits\Hydrator;
 
 abstract class BaseEntity
 {

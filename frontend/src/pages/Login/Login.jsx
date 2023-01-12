@@ -20,10 +20,7 @@ export default function Login() {
 
     fetch("http://localhost:5656/login", {
       method: "POST",
-      body: JSON.stringify({
-        mail: formData.mail,
-        password: formData.password,
-      }),
+      body: JSON.stringify(formData),
     })
       .then((data) => data.json())
       .then((data) => console.log(data));
