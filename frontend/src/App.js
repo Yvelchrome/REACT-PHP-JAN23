@@ -2,6 +2,7 @@ import "./App.scss";
 import { Login } from "./pages";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { useEffect } from "react";
+import Home from "./pages/Home/Home";
 
 /*useEffect(() => {
   fetch("http://backend/register", {
@@ -18,6 +19,7 @@ function App() {
     <Router>
       <Routes>
         <Route path={"/"} element={<Login />} />
+        <Route path={"/home"} element={<Home />} />
         <Route path={"*"} element={<Login />} />
       </Routes>
     </Router>
