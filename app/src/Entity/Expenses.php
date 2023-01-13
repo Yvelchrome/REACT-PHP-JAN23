@@ -4,27 +4,28 @@ namespace App\Entity;
 
 class Expenses extends BaseEntity
 {
-    private int $userId;
+    private int $expenseId;
     private int $roommateId;
     private string $expenseName;
     private int $expenseSum;
-    private int $alreadyPayed ;
+    private int $alreadyPayed;
+    private string $expenseDate;
 
     /**
      * @return int
      */
-    public function getUserId(): int
+    public function getExpenseId(): int
     {
-        return $this->userId;
+        return $this->expenseId;
     }
 
     /**
-     * @param int $userId
+     * @param int $expenseId
      * @return Expenses
      */
-    public function setUserId(int $userId): Expenses
+    public function setExpenseId(int $expenseId): Expenses
     {
-        $this->userId = $userId;
+        $this->expenseId = $expenseId;
         return $this;
     }
 
@@ -97,6 +98,24 @@ class Expenses extends BaseEntity
     public function setAlreadyPayed(int $alreadyPayed): Expenses
     {
         $this->alreadyPayed = $alreadyPayed;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getExpenseDate(): string
+    {
+        return $this->expenseDate;
+    }
+
+    /**
+     * @param string $expenseDate
+     * @return Expenses
+     */
+    public function setExpenseDate(string $expenseDate): Expenses
+    {
+        $this->expenseDate = $expenseDate;
         return $this;
     }
 }

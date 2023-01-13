@@ -6,6 +6,7 @@ class Roommates extends BaseEntity
 {
     private int $userId;
     private int $roommateId;
+    private string $roommateName;
 
     /**
      * @return int
@@ -43,4 +44,21 @@ class Roommates extends BaseEntity
         return $this;
     }
 
+    /**
+     * @return string
+     */
+    public function getRoommateName(): string
+    {
+        return $this->roommateName;
+    }
+
+    /**
+     * @param string $roommateName
+     * @return Roommates
+     */
+    public function setRoommateName(string $roommateName): Roommates
+    {
+        $this->roommateName = $roommateName;
+        return $this;
+    }
 }
