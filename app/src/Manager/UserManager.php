@@ -38,9 +38,9 @@ class UserManager extends BaseManager
 
     public function checkUser(User $user): ?User
     {
-        $checking = $this->pdo->prepare("SELECT * FROM User WHERE userName = :userName and password = :password");
+        $checking = $this->pdo->prepare("SELECT * FROM User WHERE userMail = :userMail AND password = :password");
 
-        $checking->bindValue("userName", $user->getUserName());
+        $checking->bindValue("userMail", $user->getUserMail());
         $checking->bindValue("password", $user->getPassword());
         $checking->execute();
         $userFetch = $checking->fetch(PDO::FETCH_ASSOC);

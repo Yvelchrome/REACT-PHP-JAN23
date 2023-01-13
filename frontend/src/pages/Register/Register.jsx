@@ -1,35 +1,16 @@
-import style from "./Login.module.scss";
+import style from "./Register.module.scss";
 import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
 
-export default function Login() {
+export default function Register() {
   const navigate = useNavigate();
 
   const [formData, setFormData] = useState({
+    name: "",
+    surname: "",
     mail: "",
     password: "",
   });
-  const handleClick = (event) =>{
-    //retirer le comportement par défaut du formulaire
-    event.preventDefault();
-    // On convertit les données de l'état en chaîne JSON
-    
-    // On envoie les données au serveur
-     const options = {
-       method: 'POST', // configuration de la méthode de requête en POST
-       headers: { 'Content-Type': 'application/json' }, // configuration du type de contenu dans les en-têtes de la requête en JSON
-       body: JSON.stringify(formData) // conversion de l'objet data en chaine pour l'inclure dans le corps de la requête
-     };
-     // On envoie la requête
-     fetch('http://backend/register', options)
-       .then(response => response.json()) // analyse de la réponse JSON
-       .then(response => console.log(response)) // affiche les données obtenues
-       .catch(error => console.error('Error:', error)); // gère les erreurs éventuelles lors de la requête
-     
-    //
-    toggleAccount('login');
-    
-  }
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -47,21 +28,36 @@ export default function Login() {
       headers: { "Content-Type": "application/json" }, // configuration du type de contenu dans les en-têtes de la requête en JSON
       body: JSON.stringify(formData), // conversion de l'objet data en chaine pour l'inclure dans le corps de la requête
     };
-    fetch("http://localhost:5656/login", options)
+    fetch("http://localhost:5656/register", options)
       .then((data) => data.json())
       .then((data) => console.log(data))
       .catch((error) => console.error("Error:", error));
 
-    // TODO: navigate to the home page on successful query + register
-    navigate("/");
+    navigate("/login");
   };
 
   return (
     <div className={style.container}>
       <div className={style.container_image}></div>
       <form className={style.form_container} onSubmit={handleSubmit}>
-        <h1 className={style.title}>Avez-vous un compte ?</h1>
+        <h1 className={style.title}>Créer un compte</h1>
         <div className={style.inputContainer}>
+          <input
+            type="text"
+            name="name"
+            placeholder="Nom"
+            required
+            value={formData.name}
+            onChange={handleChange}
+          />
+          <input
+            type="text"
+            name="surname"
+            placeholder="surname"
+            required
+            value={formData.surname}
+            onChange={handleChange}
+          />
           <input
             type="email"
             name="mail"
@@ -78,11 +74,11 @@ export default function Login() {
             value={formData.password}
             onChange={handleChange}
           />
-          <button>Connexion</button>
+          <button>Inscription</button>
           <div className={style.create}>
             <p className={style.text}>OU</p>
-            <Link to={"/register"} className={style.change}>
-              Inscription
+            <Link to={"/login"} className={style.change}>
+              Connexion
             </Link>
           </div>
         </div>

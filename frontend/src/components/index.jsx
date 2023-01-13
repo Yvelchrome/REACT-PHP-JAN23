@@ -1,3 +1,3 @@
-// import component from "./component/component.jsx";
+// import Component from "./Component/Component.jsx";
 
 export {};

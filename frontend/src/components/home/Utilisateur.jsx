@@ -21,7 +21,10 @@ const Utilisateur = ({toggleAccount}) => {
             Listez les personnes qui participent aux comptes            </div>
 
             <div className={style.container_form_left}>
-                
+                <div className={style.root}> 
+                <div></div>
+                <div></div>
+                </div>
                 
             <div>
                 
