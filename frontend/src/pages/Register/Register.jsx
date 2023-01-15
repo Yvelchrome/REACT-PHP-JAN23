@@ -24,9 +24,9 @@ export default function Register() {
     e.preventDefault();
 
     const options = {
-      method: "POST", // configuration de la méthode de requête en POST
-      headers: { "Content-Type": "application/json" }, // configuration du type de contenu dans les en-têtes de la requête en JSON
-      body: JSON.stringify(formData), // conversion de l'objet data en chaine pour l'inclure dans le corps de la requête
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(formData),
     };
     fetch("http://localhost:5656/register", options)
       .then((data) => data.json())
