@@ -9,6 +9,27 @@ export default function Login() {
     mail: "",
     password: "",
   });
+  const handleClick = (event) =>{
+    //retirer le comportement par défaut du formulaire
+    event.preventDefault();
+    // On convertit les données de l'état en chaîne JSON
+    
+    // On envoie les données au serveur
+     const options = {
+       method: 'POST', // configuration de la méthode de requête en POST
+       headers: { 'Content-Type': 'application/json' }, // configuration du type de contenu dans les en-têtes de la requête en JSON
+       body: JSON.stringify(formData) // conversion de l'objet data en chaine pour l'inclure dans le corps de la requête
+     };
+     // On envoie la requête
+     fetch('http://backend/register', options)
+       .then(response => response.json()) // analyse de la réponse JSON
+       .then(response => console.log(response)) // affiche les données obtenues
+       .catch(error => console.error('Error:', error)); // gère les erreurs éventuelles lors de la requête
+     
+    //
+    toggleAccount('login');
+    
+  }
 
   const handleChange = (e) => {
     const { name, value } = e.target;
